@@ -10,7 +10,7 @@ def getblog():
     mydb = mysql.connector.connect(
         host="blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com",
         user="admin",
-        password="blogdb!2",
+        password="", ##비밀번호 입력 필수
         database="blogdb",
         port=3306, 
         charset="utf8")
