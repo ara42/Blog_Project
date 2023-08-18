@@ -118,11 +118,11 @@ def extract_naverBlog(url):
 
 
 
-conn = pymysql.connect(host='blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com',
-                      user='admin',
-                      password='blogdb!2',
-                      database='Naver_Blogs',
-                      port=3306)
+conn = pymysql.connect(host='',
+                      user='',
+                      password='',
+                      database='',
+                      port=)
 curs=conn.cursor()
 
 query="SELECT blog_ID,url FROM post WHERE content='' ORDER BY blog_ID "
