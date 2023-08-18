@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+  <title>"{{ location }}" 찐리뷰</title>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="지역리뷰">
+  <meta name="description" content="지역페이지">
+  <meta name="author" content="Jaehoon Kim">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    h1, h2, h3, h4, h5 {
+      text-align: center;
+    }
+    #container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+    }
+    #rank, #score {
+      flex: 1;
+      padding: 20px;
+    }
+    ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .button {
+      display: block;
+      width: 150%;
+      padding: 30px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-size: 18px;
+    }
+    .button:hover {
+      background-color: rgb(44, 99, 49);
+    }
+    .rank-number {
+    width: 50px; /* 숫자 크기를 원하는대로 조정 */
+    height: 50px; /* 숫자 크기를 원하는대로 조정 */
+    background-color: green;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-size: 28px; /* 원하는 숫자 크기로 조정 */
+  }
+    hr {
+      width: 100%;
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>"{{ location }}" 지역 찐리뷰 요약</h1>
+  <hr>
+  <div id="container">
+    <div id="rank">
+      <h2>"{{ location }}"찐리뷰 맛집 포스팅 순위</h2>
+      <ol>
+        <li><span class="rank-number">1</span><button class="button" id="top1">ㅇㄹㅇㄹ</button></li>
+        <li><span class="rank-number">2</span><button class="button" id="top2">ㅇㄹㅇㄹ</button></li>
+        <li><span class="rank-number">3</span><button class="button" id="top3">ㅇㄹㅇㄹ</button></li>
+        <li><span class="rank-number">4</span><button class="button" id="top4">ㅇㄹㅇㄹ</button></li>
+        <li><span class="rank-number">5</span><button class="button" id="top5">ㅇㄹㅇㄹ</button></li>
+      </ol>
+    </div>
+    <div id="score">
+      <h2>블로그 포스팅 분석 결과</h2>
+      <p>이미지파일 1</p>
+      <p>이미지파일 2</p>
+    </div>
+  </div>
+</body>
+<footer>
+  <hr>
+  <div id="tail">
+    <h5>이 프로젝트는 <mark>"주연과조연"</mark> 팀이 진행하였습니다.</h5>
+  </div>
+</footer>
+</html>
