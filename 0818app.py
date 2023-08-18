@@ -3,7 +3,7 @@ import pymysql
 
 app = Flask(__name__)
 
-# 한글 출력
+## 한글 출력
 app.config['JSON_AS_ASCII'] = False
 
 # DB 연동
@@ -21,13 +21,13 @@ def db_result(sql):
     results = mycursor.fetchall()
     return results
 
-# 첫 번째 페이지
+## 첫 번째 페이지
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html')
 
-# 두 번째 페이지
+## 두 번째 페이지
 @app.route('/place', methods=['GET', 'POST'])
 def place():
     location = request.form.get('location', '')
@@ -35,7 +35,7 @@ def place():
     restaurants = db_result(sql1)
     return render_template('page2.html', name=location, restaurants=restaurants)
 
-#세 번째 페이지
+## 세 번째 페이지
 @app.route('/restaurant', methods=['GET', 'POST'])
 def restaurant():
     store = request.form.get('restaurant', '')
