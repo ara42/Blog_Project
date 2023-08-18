@@ -189,18 +189,10 @@ for dat in data:
       conn.rollback()  # Rollback changes if an error occurs
 
     #초기화
-    post_date=''
-    title=''
-    main_text=''
-    i_urls=''
-    ad_score=0
+    blog_info=['','','',[],0,'','']
   else:
     #초기화
-    post_date=''
-    title=''
-    main_text=''
-    i_urls=''
-    ad_score=0
+    blog_info=['','','',[],0,'','']
 
 
 
