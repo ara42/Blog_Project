@@ -102,7 +102,7 @@ def extract_naverBlog(url):
     map_titles.append(map.text.replace('\n',''))
 
   ## url 로 ad 거르기
-  ad_words = ['seoulouba', 'mrblog', 'revu', 'dinnerqueen', 'xn--939au0g4vj8sq']
+  ad_words = ['seoulouba', 'mrblog', 'revu', 'dinnerqueen', 'xn--939au0g4vj8sq','modo','mrblog','hello-dm','cherrypl']
   ad_score=0
   for ad_word in ad_words:
     for php_link in php_links:
