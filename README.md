@@ -41,8 +41,8 @@ CREATE TABLE restaurants(
   `total_post_cnt` INT DEFAULT NULL COMMENT '관련 포스트 전체수',
   `post_cnt` INT DEFAULT NULL COMMENT '광고가 아닌 포스트 전체수',
   `features` TEXT NOT NULL COMMENT '부가정보.',
-  `menu_count` TEXT NULL COMMENT '{"메뉴명_1": 2, "메뉴명_2": 3} 식당별 메뉴언급횟수'
-  `finished` TINYINT(1) DEFAULT 0 COMMENT '데이터 분석 완료유무'
+  `menu_count` TEXT NULL COMMENT '{"메뉴명_1": 2, "메뉴명_2": 3} 식당별 메뉴언급횟수',
+  `finished` TINYINT(1) DEFAULT 0 COMMENT '데이터 분석 완료유무',
   INDEX (district)
 );
 
@@ -55,8 +55,8 @@ CREATE TABLE post(
   `url` VARCHAR(255) NOT NULL COMMENT '포스팅 URL',
   `description` TEXT NOT NULL COMMENT  '포스트 설명',
   `post_date` DATE NOT NULL COMMENT  '포스팅 날짜',
-  `content` TEXT NOT NULL  COMMENT  '포스트 본문'
-  `menu_count` TEXT NULL COMMENT '{"메뉴명_1": 2, "메뉴명_2": 3} 포스트별 메뉴 언급횟수'
+  `content` TEXT NOT NULL  COMMENT  '포스트 본문',
+  `menu_count` TEXT NULL COMMENT '{"메뉴명_1": 2, "메뉴명_2": 3} 포스트별 메뉴 언급횟수',
   FOREIGN KEY (res_id) REFERENCES restaurants(id)
 ) COMMENT '광고아닌 포스트. 화면 출력용';
 
@@ -67,12 +67,12 @@ CREATE TABLE post_data(
   `url` VARCHAR(255) NOT NULL COMMENT '포스팅 URL',
   `description` TEXT NOT NULL COMMENT '포스트 설명',
   `post_date` DATE NOT NULL COMMENT  '포스팅 날짜',  
-  `content` TEXT NOT NULL  COMMENT '포스트 본문',
-  `images` TEXT DEFAULT NOT NULL COMMENT '["url_1", "url_2"]',
-  `ocr_text` TEXT DEFAULT NULL COMMENT '["url_text_1", "url_text_2"] 상위 이미지 OCR, images 컬럼과 순서를 맞춰야 함.'
-  `status` enum('AD', 'NON-AD', 'NEED-TO-PROCESS') DEFAULT 'UNDEFINED' COMMENT '상태', 
-  FOREIGN KEY (res_id) REFERENCES restaurants(id)
-  KEY (status)
-) COMMENT '데이터 분석용 테이블'
+  `content` TEXT NOT NULL COMMENT '포스트 본문',
+  `images` TEXT DEFAULT NULL COMMENT '["url_1", "url_2"]',
+  `ocr_text` TEXT DEFAULT NULL COMMENT '["url_text_1", "url_text_2"] 상위 이미지 OCR, images 컬럼과 순서를 맞춰야 함.',
+  `ad_status` enum('AD', 'NON-AD', 'NEED-TO-PROCESS') DEFAULT 'NEED-TO-PROCESS' COMMENT '상태', 
+  FOREIGN KEY (res_id) REFERENCES restaurants(id),
+  INDEX (ad_status)
+) COMMENT '데이터 분석용 테이블';'
 ```
 
