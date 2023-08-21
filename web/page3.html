@@ -40,77 +40,21 @@
 <h1>"{{ restaurant }}"의 포스팅입니다.</h1>
 <a href="home.html" class="button">HOME</a>
 <hr>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-<div class="post-box">
-  <h4><a href="포스팅링크">포스팅제목</a></h4>
-  <p><a href="포스팅링크">내용요약</a></p>
-  <a href="포스팅링크">
-    <img src="이미지URL" alt="이미지설명">
-  </a>
-</div>
-</body>
+<script>
+  const numPosts = 20; #보여줄 포스트 갯수
+
+  for (let i = 0; i < numPosts; i++) {
+    document.write(`
+      <div class="post-box">
+        <h4><a href="포스팅링크">포스팅 제목</a></h4>
+        <p><a href="포스팅링크">내용 요약</a></p>
+        <a href="포스팅링크">
+          <img src="이미지URL" alt="이미지 설명">
+        </a>
+      </div>
+    `);
+  }
+</script>
 <footer>
   <hr>
   <div id="tail">
