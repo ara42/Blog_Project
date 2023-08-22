@@ -4,7 +4,8 @@ https://docs.google.com/presentation/d/1HxlKAHQTMZWOWTxa03r78GLLDwk3gqTJajFtPg3w
 ## 폴더 형식
 /app.py
 <br/> /static
-<br/>  /abc2.jpg
+<br/>  /home_main.jpg
 <br/> /templates
 <br/>  /home.html
 <br/>  /page2.html
+<br/>  /page3.html
