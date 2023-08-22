@@ -140,8 +140,10 @@ query=f"SELECT id FROM restaurants where district='{dist}'"
 curs.execute(query)
 iid = curs.fetchall()
 
-#map_filter
 for ind in range(len(iid)):
+    print('res_id',iid[ind][0])
+
+    #map_filter
     if (dist=='송리단길'):
         ff='송파'
     if (dist=='망리단길'):
