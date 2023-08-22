@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.automap import automap_base
 import pygal
 from pygal.style import Style
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -37,6 +38,20 @@ tb_flask = Base.classes.flask_exDB
 Session = sessionmaker(engine)
 session = Session()
 
+custom_style = Style(
+    background='white',
+    plot_background='white',
+    font_family = 'sans-serif',
+    title_font_size = 45,
+    label_font_size = 30,
+    legend_font_size = 30,
+    value_font_size = 30,
+    value_label_font_size = 30,
+    tooltip_font_size = 30,
+    no_data_font_size = 30,
+    major_label_font_size = 30
+)
+
 ## url로 사진 저장하는 함수
 def photo(img_url, img_name):
     img_folder = "C:/work/python/blog_API/static/"
@@ -54,15 +69,6 @@ def place():
     location = request.form.get('location', '') ## HTML에서 location값 받아옴
     sel_rec_name = select(tb_flask.rec_name).where(tb_flask.district == f'{location}') 
     restaurants = session.execute(sel_rec_name).all() ## 받아온 location과 같은 식당이름 저장
-
-    custom_style = Style(
-        background='white',
-        plot_background='white',
-        font_family = 'sans-serif',
-        title_font_size = 45,
-        label_font_size = 35,
-        legend_font_size = 35
-    )
 
     pie_chart = pygal.Pie(inner_radius=.4, style=custom_style)
     pie_chart.title = '광고 비율'
@@ -102,8 +108,27 @@ def restaurant():
         img = f'img{i}.jpg'
         l_img.append(img)
         photo(url[i][0], img)
-    print(l_img)
-    return render_template('page3.html', restaurant=res, img_list=l_img)
+    
+    bar_chart = pygal.HorizontalBar(style=custom_style)
+    bar_chart.title = '메뉴 언급 수'
+    bar_chart.add('IE', 19.5)
+    bar_chart.add('Firefox', 36.6)
+    bar_chart.add('Chrome', 36.3)
+    bar_chart.add('Safari', 4.5)
+    bar_chart.add('Opera', 2.3)
+    bar_chart = bar_chart.render_data_uri()
+
+    date_chart = pygal.Line(x_label_rotation=20, style=custom_style)
+    date_chart.title = '기간별 포스팅 수'
+    date_chart.x_labels = map(lambda d: d.strftime('%Y-%m-%d'), [
+    datetime(2013, 1, 2),
+    datetime(2013, 1, 12),
+    datetime(2013, 2, 2),
+    datetime(2013, 2, 22)])
+    date_chart.add("Visits", [300, 412, 823, 672])
+    date_chart = date_chart.render_data_uri()
+
+    return render_template('page3.html', restaurant=res, img_list=l_img, bar_chart=bar_chart, date_chart=date_chart)
 
 if __name__ == '__main__':
     app.run(debug=True)
