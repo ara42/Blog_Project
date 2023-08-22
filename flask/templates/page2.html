@@ -12,7 +12,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       margin: 0;
       font-family: Arial, sans-serif;
     }
@@ -24,7 +23,7 @@
       flex-direction: row;
       align-items: flex-start;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1500px;
       margin: auto;
     }
     #rank, #score {
@@ -51,6 +50,7 @@
       cursor: pointer;
       text-align: left;
       font-size: 18px;
+      margin: 10pt;
     }
     .button:hover {
       background-color: rgb(44, 99, 49);
@@ -87,8 +87,8 @@
       </div>
       <div id="chart">
         <h2>블로그 포스팅 분석 결과</h2>
-        <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="600" height="400"></p>
-        <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="600" height="400"></p>        
+        <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="500" height="300"></p>
+        <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="500" height="300"></p>        
       </div>
     </div>
   </form>
