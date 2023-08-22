@@ -67,12 +67,6 @@
     margin-right: 10px;
     font-size: 28px; /* 원하는 숫자 크기로 조정 */
   }
-    hr {
-      width: 100%;
-      border: none;
-      border-top: 1px solid #ccc;
-      margin: 20px 0;
-    }
   </style>
 </head>
 <body>
@@ -91,10 +85,10 @@
           {% endfor %}
         </ol>
       </div>
-      <div id="score">
+      <div id="chart">
         <h2>블로그 포스팅 분석 결과</h2>
-        <p><img src="{{ url_for('static', filename='home_main.png') }}" alt="광고비율" width="100%" height="200"></p>
-        <p><img src="{{ url_for('static', filename='home_main.png') }}" alt="인기음식" width="100%" height="200"></p>
+        <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="600" height="400"></p>
+        <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="600" height="400"></p>        
       </div>
     </div>
   </form>
