@@ -34,6 +34,11 @@
       max-width: 100%;
       height: auto;
     }
+    .image-box {
+    width: 200px; /* 원하는 가로 크기로 변경 */
+    height: 150px; /* 원하는 세로 크기로 변경 */
+    object-fit: cover; /* 이미지가 박스 안에 꽉 차도록 설정 */
+    }
   </style>
 </head>
 <body>
@@ -41,15 +46,16 @@
 <a href="home" class="button">HOME</a>
 <hr>
 <script>
-  const numPosts = 20;
+  const numPosts = 10;
+  const imgList = JSON.parse('{{ img_list | tojson | safe }}');
 
   for (let i = 0; i < numPosts; i++) {
     document.write(`
       <div class="post-box">
-        <h4><a href="포스팅링크">포스팅 제목</a></h4>
-        <p><a href="포스팅링크">내용 요약</a></p>
+        <h4><a href="포스팅링크">{{ restaurant }}</a></h4> // 수정 필요
+        <p><a href="포스팅링크">{{ restaurant }}</a></p> // 수정 필요
         <a href="포스팅링크">
-          <img src="이미지URL" alt="이미지 설명">
+          <img src="/static/${imgList[i]}" alt="img" class="image-box">
         </a>
       </div>
     `);
