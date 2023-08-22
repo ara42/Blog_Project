@@ -45,6 +45,8 @@
 <h1>"{{ restaurant }}"의 포스팅입니다.</h1>
 <a href="home" class="button">HOME</a>
 <hr>
+<embed type="image/svg+xml" src="{{ bar_chart|safe }}" alt="광고비율" width="49%" height="400">
+  <embed type="image/svg+xml" src="{{ date_chart|safe }}" alt="인기음식" width="49%" height="400">
 <script>
   const numPosts = 10;
   const imgList = JSON.parse('{{ img_list | tojson | safe }}');
@@ -52,11 +54,21 @@
   for (let i = 0; i < numPosts; i++) {
     document.write(`
       <div class="post-box">
-        <h4><a href="포스팅링크">{{ restaurant }}</a></h4> // 수정 필요
-        <p><a href="포스팅링크">{{ restaurant }}</a></p> // 수정 필요
+        <table>
+          <tr>
+            <td>
+        <h4><a href="포스팅링크">{{ restaurant }}</a></h4>
+        <p><a href="포스팅링크">제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라
+        제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라
+        제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라
+        </a></p> /* 이 부분에 포스팅 본문 */
+        </td>
+        <td>
         <a href="포스팅링크">
           <img src="/static/${imgList[i]}" alt="img" class="image-box">
         </a>
+        </td>
+        </table>
       </div>
     `);
   }
