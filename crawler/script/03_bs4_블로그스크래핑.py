@@ -126,7 +126,7 @@ def extract_naverBlog(url):
 
     return (url, main_text, img_urls, ad_status, map_address)
 
-mysql_password='blogdb!2'
+mysql_password=input('mysql_PW : ')
 
 conn = pymysql.connect(host='blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com',
                       user='admin',
