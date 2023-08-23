@@ -67,10 +67,25 @@
     margin-right: 10px;
     font-size: 28px; /* 원하는 숫자 크기로 조정 */
   }
+  .footer-list {
+  list-style: none;
+  padding: 0;
+  display: flex; 
+  justify-content: center; 
+  gap: 30px; 
+}
+
+.footer-list li {
+  display: inline; 
+}
+.tail {
+    color: rgba(128, 128, 128, 0.393)
+  }
   </style>
 </head>
 <body>
   <form method="post" action="{{ url_for('restaurant') }}">
+    <div class="signature"><mark>주연과 조연</mark></div>
     <h1>"{{ name }}" 지역 찐리뷰 요약</h1>
     <hr>
     <div id="container">
@@ -95,8 +110,18 @@
 </body>
 <footer>
   <hr>
-  <div id="tail">
-    <h5>이 프로젝트는 <mark>"주연과조연"</mark> 팀이 진행하였습니다.</h5>
-  </div>
+  <nav>
+    <ul class="footer-list">
+      <li><a href="https://github.com/ara42/Blog_Project" target="_blank">Github</a></li>
+      <li><a href="https://www.notion.so/a61e5e1e38eb4d8a9528d2b67319be4f?v=f62f95f2ce4342ba886b8d32073f381f" target="_blank">Notion</a></li>
+      <li><a href='#'>이용약관</a></li>
+      <li><a href='#'>프로젝트 소개</a></li>
+    </ul>
+  </nav>
+  <div class="tail">
+      <p>
+        <span>본 웹사이트는 김재훈 박주연 백채은 조아라 이상 4명의 프로젝트입니다.</span>
+      </p>
+    </div>
 </footer>
 </html>
