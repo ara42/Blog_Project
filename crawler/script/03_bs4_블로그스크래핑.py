@@ -1,12 +1,11 @@
 import requests
-import pandas as pd
 from urllib.parse import quote
 from urllib.request import Request,urlopen
-import json
 import re
 from bs4 import BeautifulSoup
 import pymysql
 import time
+
 
 def str_filter(text):
     html_spch = ['&quot;','&amp;','&lt;','&gt;','&apos;',
@@ -30,7 +29,8 @@ def str_filter(text):
 
 
 def extract_naverBlog(url):
-    response = requests.get(url)
+    headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36'}
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
     
     if (str(soup).count('iframe')==2):
@@ -97,6 +97,7 @@ def extract_naverBlog(url):
             pass
 
     img_urls.extend( Naver_sticker_urls)
+
     
     ## url 로 ad 거르기
     ad_words = ['seoulouba', 'mrblog', 'revu', 'dinnerqueen', 'xn--939au0g4vj8sq','modo','mrblog','hello-dm','cherrypl']
@@ -125,7 +126,7 @@ def extract_naverBlog(url):
 
     return (url, main_text, img_urls, ad_status, map_address)
 
-mysql_password=input("mysql_pw : ")
+mysql_password='blogdb!2'
 
 conn = pymysql.connect(host='blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com',
                       user='admin',
@@ -134,60 +135,76 @@ conn = pymysql.connect(host='blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.co
                       port=3306)
 curs=conn.cursor()
 
-dist=input("블로그 스크래핑할 district : ")
+dist=input('지역 ㅇㅇㅇ길 : ')
 
-query=f"SELECT id FROM restaurants where district='{dist}'"
-curs.execute(query)
-iid = curs.fetchall()
-
-for ind in range(len(iid)):
-    print('res_id',iid[ind][0])
-
-    #map_filter
-    if (dist=='송리단길'):
-        ff='송파'
-    if (dist=='망리단길'):
-        ff='마포'
-    if (dist=='용리단길'):
-        ff='용산'
-    if (dist=='서순라길'):
-        ff='종로'
-    if (dist=='샤로수길'):
-        ff='관악'   
+query=f"SELECT id FROM restaurants WHERE district='{dist}';"
     
-    query=f"SELECT id,url,res_id FROM post_data where res_id={iid[ind][0]}"
-    curs.execute(query)
-    data = curs.fetchall()
-    for idx in range(len(data)):
-        print(data[idx][0],data[idx][1])
-        try:
-            scraping=extract_naverBlog(data[idx][1])
-        except Exception as e:
-            print('extract_naverBlog error',e)
-            update_sql = f"UPDATE post_data SET map=2 WHERE id={data[idx][0]};"
-            curs.execute(update_sql)
+if (dist=='송리단길'):
+    ff='송파'
+if (dist=='망리단길'):
+    ff='마포'
+if (dist=='용리단길'):
+    ff='용산'
+if (dist=='서순라길'):
+    ff='종로'
+if (dist=='샤로수길'):
+    ff='관악'
+if (dist=='경리단길'):
+    ff='용산'
+        
+curs.execute(query)
+dat = curs.fetchall()
+res_list = [datt[0] for datt in dat]
+res_list_str = ','.join(map(str, res_list))
+
+query = f"SELECT id,url,res_id FROM post_data WHERE map IS NULL AND res_id IN ({res_list_str});"
+curs.execute(query)
+data = curs.fetchall()
+
+print(len(data))
+stend=input("범위 시작,끝 : ")
+st=int(stend.split(',')[0])
+end=int(stend.split(',')[1])
+
+batch_size1 = 20
+batch_data1 = []
+batch_size2 = 20
+batch_data2 = []
+
+for idx in data[st:end]:
+    print(idx[0],' ',idx[1],' ',idx[2])
+
+    try:
+        scraping = extract_naverBlog(idx[1])
+        time.sleep(0.2)
+    except Exception as e:
+        print('extract_naverBlog error', e)
+        update_sql1 = "UPDATE post_data SET map=%s WHERE id=%s;"
+        batch_data1.append((2,idx[0]))
+        
+        if len(batch_data1) >= batch_size1:
+            curs.executemany(update_sql1,batch_data1)
             conn.commit()
-            continue
-            
-        naver_map=0
-        
-        #블로그 내부의 지도 주소와 검색 지역 같은지 확인
-        if scraping[4].find(ff)>-1:
-            naver_map=1
+            batch_data1 = []
+        continue
 
-        update_sql = f"UPDATE post_data SET content='{scraping[1]}', images='{scraping[2]}', map={naver_map},ad_status='{scraping[3]}' WHERE id={data[idx][0]};"
-        curs.execute(update_sql)
+    naver_map = 0
+    if scraping[4].find(ff) > -1:
+        naver_map = 1
+    
+    update_sql2 = "UPDATE post_data SET content=%s, images=%s, map=%s,ad_status=%s WHERE id=%s;"
+    batch_data2.append((scraping[1],scraping[2],naver_map,scraping[3],idx[0]))
+
+    if len(batch_data2) >= batch_size2:
+        curs.executemany(update_sql2,batch_data2)
         conn.commit()
-        
-        
-        
-        
-        
-        
+        batch_data2 = []
 
-
-
-
-
-
-
+# Execute any remaining queries in the batch
+if batch_data1:
+    curs.executemany(batch_data1)
+    conn.commit()
+    
+if batch_data2:
+    curs.executemany(batch_data2)
+    conn.commit()
