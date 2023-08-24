@@ -15,7 +15,7 @@ app.config['JSON_AS_ASCII'] = False
 
 ## DB 연동 (SQLAlchemy)
 user = "admin"
-password = "blogdb!2" ## 비밀번호 입력
+password = "" ## 비밀번호 입력
 host = "blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com"
 port = 3306
 db = "blogdb"
