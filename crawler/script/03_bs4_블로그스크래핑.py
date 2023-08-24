@@ -208,3 +208,5 @@ if batch_data1:
 if batch_data2:
     curs.executemany(batch_data2)
     conn.commit()
+    
+conn.close()
