@@ -84,13 +84,17 @@
   .logo {
     text-align: center;
   }
+  @font-face {
+    font-family: "bmjua";
+    src: url("C:/Users/USER/Desktop/web/bmjua.ttf") format("truetype"); 
+  }
   </style>
 </head>
 <body>
-  <form method="post" action="{{ url_for('restaurant') }}">
-    <div class="logo"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></div>
+    <div class="logo"><a href="home"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></a></div>
     <h1>"{{ name }}" 지역 찐리뷰 요약</h1>
     <hr>
+    <form method="post" action="{{ url_for('restaurant') }}">
     <div id="container">
       <div id="rank">
         <h2>"{{ name }}" 찐리뷰 맛집 포스팅 순위</h2>
@@ -103,13 +107,14 @@
           {% endfor %}
         </ol>
       </div>
+    </form>
       <div id="chart">
         <h2>블로그 포스팅 분석 결과</h2>
         <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="500" height="300"></p>
         <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="500" height="300"></p>        
       </div>
     </div>
-  </form>
+  
 </body>
 <footer>
   <hr>
