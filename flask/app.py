@@ -127,13 +127,12 @@ def restaurant():
     for i in range(post_cnt):
         l_post[0].append(post[i][0])
         l_post[1].append(post[i][1])
-        l_post[2].append(post[i][2][:500])
+        l_post[2].append(post[i][2][:300])
         url = post[i][3].split('\n')[0]
         img = f'img{i}.jpg'
         l_post[3].append(img)
         photo(url, img)
 
-    print(l_post[0][0],l_post[1][0],l_post[2][0],l_post[3][0])
 
     ## Bar
     bar_chart = pygal.HorizontalBar(style=custom_style)
