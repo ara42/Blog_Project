@@ -2,14 +2,12 @@
 <html lang="ko">
 <head>
   <title>주연과조연 광고필터</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <meta charset="UTF-8">
   <meta name="keywords" content="KFQ프로젝트">
   <meta name="description" content="KFQ 빅데이터 교육 최종 프로젝트">
   <meta name="author" content="Jaehoon Kim">
   <style>
-    h1, h2, h3, h5 {
-      text-align: center;
-    }
     table {
       border-collapse: collapse;
       width: 100%;
@@ -29,51 +27,27 @@
       border: none;
       cursor: pointer;
     }
-     .button:hover {
+    .button:hover {
       background-color: rgb(44, 99, 49);
     }
-    .footer-list {
-  list-style: none;
-  padding: 0;
-  display: flex; 
-  justify-content: center; 
-  gap: 30px; 
-}
-
-.footer-list li {
-  display: inline; 
-}
-.tail {
-    color: rgba(128, 128, 128, 0.393)
-  }
-  .signature {
-    font-size: 30px;
-  }
-  .text {
-    position: absolute;
-    text-align: center;
-    color: brown;
-    margin-left: 30%;
-    top: 10%;
-    font-size:30px;
-    font-family: "bmjua",sans-serif;
-    font-weight: 10000;
-  }
-  .choice {
-    text-align: center;
-    font-size: 30px;
-  }
-  .logo {
-    text-align: center;
-  }
-      @font-face {
-    font-family: "bmjua";
-    src: url("C:/Users/USER/Desktop/web/bmjua.ttf") format("truetype"); 
-  }
+    .text {
+      position: absolute;
+      text-align: center;
+      color: brown;
+      margin-left: 30%;
+      top: 10%;
+      font-size:30px;
+      font-family: "bmjua",sans-serif;
+      font-weight: 10000;
+    }
+    .choice {
+      text-align: center;
+      font-size: 30px;
+    }
   </style>
 </head>
 <body>
-  <div class="logo"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></div>
+  <div class="logo"><a href="home"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></a></div>
   <hr>
   <div id="mainscreen">
     <img src="{{ url_for('static', filename='test.png') }}" alt="img" width="100%" height="200">
