@@ -81,11 +81,14 @@
 .tail {
     color: rgba(128, 128, 128, 0.393)
   }
+  .logo {
+    text-align: center;
+  }
   </style>
 </head>
 <body>
   <form method="post" action="{{ url_for('restaurant') }}">
-    <div class="signature"><mark>주연과 조연</mark></div>
+    <div class="logo"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></div>
     <h1>"{{ name }}" 지역 찐리뷰 요약</h1>
     <hr>
     <div id="container">
