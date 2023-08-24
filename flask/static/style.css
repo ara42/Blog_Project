@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "bmjua"; 
+  src: url("bmjua.ttf") format("truetype");
+}
+
+h1, h2, h3, h4, h5 {
+  text-align: center;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  display: flex; 
+  justify-content: center; 
+  gap: 30px; 
+}
+
+.footer-list li {
+  display: inline; 
+}
+
+.logo {
+  text-align: center;
+}
+
+.tail {
+  color: rgba(128, 128, 128, 0.393)
+}
+
+* {
+  font-family: "bmjua";
+}
