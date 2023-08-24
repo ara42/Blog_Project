@@ -15,10 +15,10 @@ app.config['JSON_AS_ASCII'] = False
 
 ## DB 연동 (SQLAlchemy)
 user = "admin"
-password = "" ## 비밀번호 입력
+password = "blogdb!2" ## 비밀번호 입력
 host = "blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com"
 port = 3306
-db = "Naver_Blogs"
+db = "blogdb"
 db_url = f'mysql+pymysql://{user}:{password}@{host}:{port}/{db}'
 
 ## 엔진 생성
@@ -32,12 +32,15 @@ Base.prepare(engine, reflect=True)
 
 ## 테이블 클래스 가져오기
 tb_res = Base.classes.restaurants
-tb_flask = Base.classes.flask_exDB
+tb_post = Base.classes.post_data
+#tb_post = Base.classes.post_data
+#tb_post = Base.classes.post
 
 ## 세션 생성
 Session = sessionmaker(engine)
 session = Session()
 
+## 차트의 style 설정
 custom_style = Style(
     background='white',
     plot_background='white',
@@ -67,9 +70,12 @@ def home():
 @app.route('/place', methods=['GET', 'POST'])
 def place():
     location = request.form.get('location', '') ## HTML에서 location값 받아옴
-    sel_rec_name = select(tb_flask.rec_name).where(tb_flask.district == f'{location}') 
-    restaurants = session.execute(sel_rec_name).all() ## 받아온 location과 같은 식당이름 저장
-
+    #sel_rec_name = select(tb_post.rec_name).where(tb_post.district == f'{location}')
+    #sel_rec_name = select(tb_res.id, tb_post.rec_name).where(tb_res.district == f'{location}').order_by(tb_res.post_cnt.desc()).limit(5) 
+    #restaurants = session.execute(sel_rec_name).all() ## 받아온 location과 같은 식당이름 저장
+    restaurants = [('고도식 잠실점',), ('러반로제레스토랑 석촌호수점',), ('오레노라멘 송파점',), ('이오로 비스트로 송파점',), ('야키토리로만 송파점',)]
+    
+    ## Pie
     pie_chart = pygal.Pie(inner_radius=.4, style=custom_style)
     pie_chart.title = '광고 비율'
     pie_chart.add('IE', 19.5)
@@ -79,6 +85,7 @@ def place():
     pie_chart.add('Opera', 2.3)
     pie_chart = pie_chart.render_data_uri()
 
+    ## Treemap
     treemap = pygal.Treemap(style=custom_style)
     treemap.title = '단어 군집화'
     treemap.add('A', [2, 1, 12, 4, 2, 1, 1, 3, 12, 3, 4, None, 9])
@@ -101,14 +108,34 @@ def restaurant():
     #sel_url = select(tb_flask.graph_url1).where(tb_flask.rec_name == f'{res}') 
     
     post_cnt = 10
+    '''
     l_img = []
-    sel_url = select(tb_flask.graph_url1,tb_flask.graph_url1,tb_flask.graph_url1).limit(post_cnt)
+    sel_url = select(tb_flask.graph_url1).limit(post_cnt)
     url = session.execute(sel_url).all()
     for i in range(post_cnt):
         img = f'img{i}.jpg'
         l_img.append(img)
         photo(url[i][0], img)
-    
+    '''
+
+    top5 = {'고도식 잠실점':33, '러반로제레스토랑 석촌호수점':124, '오레노라멘 송파점':101, '이오로 비스트로 송파점':5, '야키토리로만 송파점':19}
+    top5_id = list(top5.keys())
+    sel_top5_post = select(tb_post.title, tb_post.url, tb_post.content, tb_post.images).where((tb_post.res_id == f'{top5[res]}') & (tb_post.map == 1)).limit(post_cnt)
+    post = session.execute(sel_top5_post).all()
+
+    l_post = [[],[],[],[]]
+    for i in range(post_cnt):
+        l_post[0].append(post[i][0])
+        l_post[1].append(post[i][1])
+        l_post[2].append(post[i][2][:500])
+        url = post[i][3].split('\n')[0]
+        img = f'img{i}.jpg'
+        l_post[3].append(img)
+        photo(url, img)
+
+    print(l_post[0][0],l_post[1][0],l_post[2][0],l_post[3][0])
+
+    ## Bar
     bar_chart = pygal.HorizontalBar(style=custom_style)
     bar_chart.title = '메뉴 언급 수'
     bar_chart.add('IE', 19.5)
@@ -118,6 +145,7 @@ def restaurant():
     bar_chart.add('Opera', 2.3)
     bar_chart = bar_chart.render_data_uri()
 
+    ## Line
     date_chart = pygal.Line(x_label_rotation=20, style=custom_style)
     date_chart.title = '기간별 포스팅 수'
     date_chart.x_labels = map(lambda d: d.strftime('%Y-%m-%d'), [
@@ -128,7 +156,7 @@ def restaurant():
     date_chart.add("Visits", [300, 412, 823, 672])
     date_chart = date_chart.render_data_uri()
 
-    return render_template('page3.html', restaurant=res, img_list=l_img, bar_chart=bar_chart, date_chart=date_chart)
+    return render_template('page3.html', restaurant=res, l_post=l_post, bar_chart=bar_chart, date_chart=date_chart)
 
 if __name__ == '__main__':
     app.run(debug=True)
