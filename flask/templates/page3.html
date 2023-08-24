@@ -2,28 +2,12 @@
 <html lang="ko">
 <head>
   <title>"{{ restaurant }}" 포스팅</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <meta charset="UTF-8">
   <meta name="keywords" content="포스팅목록">
   <meta name="description" content="식당포스팅목록">
   <meta name="author" content="Jaehoon Kim">
   <style>
-        h1, h2, h3, h4, h5 {
-      text-align: center;
-    }
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: rgb(2, 117, 240);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      margin-left: 93%
-    }
-    .button:hover {
-      background-color: rgb(2, 28, 122);
-    }
     .post-box {
       border: 1px solid #ddd;
       padding: 10px;
@@ -32,37 +16,20 @@
       border-radius: 5px;
       word-wrap: break-word;
       border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px auto; /* 수평 가운데 정렬 */
-    width: 70%;
-    border-radius: 5px;
+      padding: 10px;
+      margin: 10px auto; /* 수평 가운데 정렬 */
+      width: 70%;
+      border-radius: 5px;
     }
     .post-box img {
       max-width: 100%;
       height: auto;
     }
     .image-box {
-    width: 600px; /* 원하는 가로 크기로 변경 */
-    height: 300px; /* 원하는 세로 크기로 변경 */
-    object-fit: cover; /* 이미지가 박스 안에 꽉 차도록 설정 */
+      width: 600px; /* 원하는 가로 크기로 변경 */
+      height: 300px; /* 원하는 세로 크기로 변경 */
+      object-fit: cover; /* 이미지가 박스 안에 꽉 차도록 설정 */
     }
-    .footer-list {
-  list-style: none;
-  padding: 0;
-  display: flex; 
-  justify-content: center; 
-  gap: 30px; 
-}
-
-.footer-list li {
-  display: inline; 
-}
-.tail {
-    color: rgba(128, 128, 128, 0.393)
-  }
-  .logo {
-    text-align: center;
-  }
   </style>
 </head>
 <body>
