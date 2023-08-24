@@ -8,6 +8,9 @@
   <meta name="description" content="KFQ 빅데이터 교육 최종 프로젝트">
   <meta name="author" content="Jaehoon Kim">
   <style>
+    hr {
+
+    }
     table {
       border-collapse: collapse;
       width: 100%;
@@ -34,8 +37,8 @@
       position: absolute;
       text-align: center;
       color: brown;
-      margin-left: 30%;
-      top: 12%;
+      margin-left: 35%;
+      top: 10%;
       font-size:30px;
       font-family: "bmjua",sans-serif;
       font-weight: 10000;
@@ -51,9 +54,7 @@
   <hr>
   <div id="mainscreen">
     <img src="{{ url_for('static', filename='test.png') }}" alt="img" width="100%" height="200">
-    <div class="text"></br></br>머신러닝을 통해 리뷰글을 필터링하여<br/>광고/협찬없는 진짜 리뷰를 보여드립니다.</div>
-  </div>
-  <div class="choice">원하시는 지역을 선택해주세요.
+    <div class="text"></br></br>머신러닝을 통해 리뷰글을 필터링하여<br/>광고/협찬없는 진짜 리뷰를 보여드립니다.<div class="choice"><br/>원하시는 지역을 선택해주세요.</div>
   </div>
   <hr>
   <form method="post" action="{{ url_for('place') }}">
