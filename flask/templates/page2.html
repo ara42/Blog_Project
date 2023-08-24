@@ -2,15 +2,12 @@
 <html lang="ko">
 <head>
   <title>"{{ name }}" 찐리뷰</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <meta charset="UTF-8">
   <meta name="keywords" content="지역리뷰">
   <meta name="description" content="지역페이지">
   <meta name="author" content="Jaehoon Kim">
   <style>
-
-    h1, h2, h3, h4, h5 {
-      text-align: center;
-    }
     #container {
       display: flex;
       flex-direction: row;
@@ -35,7 +32,7 @@
     }
     .button {
       display: block;
-      width: 100%;
+      width: 150%;
       padding: 30px;
       background-color: green;
       color: white;
@@ -49,38 +46,17 @@
       background-color: rgb(44, 99, 49);
     }
     .rank-number {
-    width: 70px; /* 숫자 크기를 원하는대로 조정 */
-    height: 40px; /* 숫자 크기를 원하는대로 조정 */
-    background-color: green;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    margin-right: 10px;
-    font-size: 28px; /* 원하는 숫자 크기로 조정 */
-  }
-  .footer-list {
-  list-style: none;
-  padding: 0;
-  display: flex; 
-  justify-content: center; 
-  gap: 30px; 
-}
-
-.footer-list li {
-  display: inline; 
-}
-.tail {
-    color: rgba(128, 128, 128, 0.393)
-  }
-  .logo {
-    text-align: center;
-  }
-  @font-face {
-    font-family: "bmjua";
-    src: url("C:/Users/USER/Desktop/web/bmjua.ttf") format("truetype"); 
-  }
+      width: 70px; /* 숫자 크기를 원하는대로 조정 */
+      height: 40px; /* 숫자 크기를 원하는대로 조정 */
+      background-color: green;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      margin-right: 10px;
+      font-size: 28px; /* 원하는 숫자 크기로 조정 */
+    }
   </style>
 </head>
 <body>
@@ -103,8 +79,8 @@
     </form>
       <div id="chart">
         <h2>블로그 포스팅 분석 결과</h2>
-        <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="800" height="300"></p>
-        <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="800" height="300"></p>        
+        <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="500" height="300"></p>
+        <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="500" height="300"></p>        
       </div>
     </div>
   
