@@ -49,13 +49,33 @@
   .signature {
     font-size: 30px;
   }
+  .text {
+    position: absolute;
+    text-align: center;
+    color: brown;
+    margin-left: 30%;
+    top: 10%;
+    font-size:30px;
+    font-family: "bmjua",sans-serif;
+    font-weight: 10000;
+  }
+  .choice {
+    text-align: center;
+    font-size: 30px;
+  }
+  .logo {
+    text-align: center;
+  }
   </style>
 </head>
 <body>
-  <div class="signature"><mark>주연과 조연</mark></div>
+  <div class="logo"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></div>
   <hr>
   <div id="mainscreen">
-    <img src="{{ url_for('static', filename='home_main.jpg') }}" alt="img" width="100%" height="300">
+    <img src="{{ url_for('static', filename='test.png') }}" alt="img" width="100%" height="200">
+    <div class="text"></br></br>머신러닝을 통해 리뷰글을 필터링하여<br/>광고/협찬없는 진짜 리뷰를 보여드립니다.</div>
+  </div>
+  <div class="choice">원하시는 지역을 선택해주세요.
   </div>
   <hr>
   <form method="post" action="{{ url_for('place') }}">
