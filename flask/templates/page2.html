@@ -7,14 +7,7 @@
   <meta name="description" content="지역페이지">
   <meta name="author" content="Jaehoon Kim">
   <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+
     h1, h2, h3, h4, h5 {
       text-align: center;
     }
@@ -42,7 +35,7 @@
     }
     .button {
       display: block;
-      width: 150%;
+      width: 100%;
       padding: 30px;
       background-color: green;
       color: white;
@@ -110,8 +103,8 @@
     </form>
       <div id="chart">
         <h2>블로그 포스팅 분석 결과</h2>
-        <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="500" height="300"></p>
-        <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="500" height="300"></p>        
+        <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="800" height="300"></p>
+        <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="800" height="300"></p>        
       </div>
     </div>
   
