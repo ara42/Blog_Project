@@ -67,7 +67,10 @@
   <embed type="image/svg+xml" src="{{ date_chart|safe }}" alt="인기음식" width="49%" height="400">
 <script>
   const numPosts = 10;
-  const imgList = JSON.parse('{{ img_list | tojson | safe }}');
+  const titleList = JSON.parse('{{ l_post[0] | tojson | safe }}');
+  const urlList = JSON.parse('{{ l_post[1] | tojson | safe }}');
+  const descriptionList = JSON.parse('{{ l_post[2] | tojson | safe }}');
+  const imgList = JSON.parse('{{ l_post[3] | tojson | safe }}');
 
   for (let i = 0; i < numPosts; i++) {
     document.write(`
@@ -75,17 +78,14 @@
         <table>
           <tr>
             <td>
-        <h4><a href="포스팅링크">{{ restaurant }}</a></h4>
-        <p><a href="포스팅링크">제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라
-        제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라
-        제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라제발 해결돼라
-        </a></p> /* 이 부분에 포스팅 본문 */
-        </td>
-        <td>
-        <a href="포스팅링크">
-          <img src="/static/${imgList[i]}" alt="img" class="image-box">
-        </a>
-        </td>
+              <h4><a href=${urlList[i]}>${titleList[i]}</a></h4>
+              <p>${descriptionList[i]}</p> 
+            </td>
+            <td>
+              <a href="포스팅링크">
+              <img src="/static/${imgList[i]}" alt="img" class="image-box">
+              </a>
+            </td>
         </table>
       </div>
     `);
