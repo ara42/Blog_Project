@@ -53,10 +53,13 @@
 .tail {
     color: rgba(128, 128, 128, 0.393)
   }
+  .logo {
+    text-align: center;
+  }
   </style>
 </head>
 <body>
-  <div class="signature"><mark>주연과 조연</mark></div>
+  <div class="logo"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></div>
 <h1>"{{ restaurant }}"의 포스팅입니다.</h1>
 <a href="home" class="button">HOME</a>
 <hr>
