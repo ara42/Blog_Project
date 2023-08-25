@@ -103,7 +103,8 @@ for dist in district_list:
                 print(data_to_insert)
                 print('curs.execute error',e)
                 continue
-    
+
+conn.close()
     
 
 
