@@ -34,8 +34,11 @@
       position: absolute;
       text-align: center;
       color: brown;
-      margin-left: 35%;
-      top: 10%;
+      left: 50%;
+      top: 13%;
+      transform: translate(
+        -50%, -50%
+      );
       font-size:30px;
       font-family: "bmjua",sans-serif;
       font-weight: 10000;
@@ -44,15 +47,26 @@
       text-align: center;
       font-size: 30px;
     }
+    .main-wrap {
+      width: 100%;
+      position: relative;
+    }
+    .main-wrap img {
+      width: 100%;
+      vertical-align: middle;
+    }
+
   </style>
 </head>
 <body>
   <div class="logo"><a href="home"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></a></div>
   <hr>
+  <div class="main-wrap">
   <div id="mainscreen">
     <img src="{{ url_for('static', filename='test.png') }}" alt="img" width="100%" height="200">
     <div class="text"></br></br>머신러닝을 통해 리뷰글을 필터링하여<br/>광고/협찬없는 진짜 리뷰를 보여드립니다.<div class="choice"><br/>원하시는 지역을 선택해주세요.</div>
   </div>
+</div>
   <hr>
   <form method="post" action="{{ url_for('place') }}">
     <table>
