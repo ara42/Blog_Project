@@ -135,7 +135,6 @@ def restaurant():
         l_post[3].append(img)
         photo(url, img)
 
-
     ## Bar
     bar_chart = pygal.HorizontalBar(style=custom_style)
     bar_chart.title = '메뉴 언급 수'
@@ -160,4 +159,4 @@ def restaurant():
     return render_template('page3.html', restaurant=res, l_post=l_post, bar_chart=bar_chart, date_chart=date_chart)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True, port=8000)
