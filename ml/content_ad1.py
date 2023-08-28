@@ -15,7 +15,7 @@ import requests
 
 blogdb = pymysql.connect(host='blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com',
                       user='admin',
-                      password='blogdb!2',
+                      password='',
                       database='blogdb',
                       charset='utf8',
                       port=3306)
@@ -70,6 +70,6 @@ for i in range(len(results)):
     up_query = f"update post_data_set set ad_status = %s where id = %s"
     data = (ad, post_data_id)
     cursor.execute(up_query, data)
-    #print(post_data_id, ad)
+    print(post_data_id, ad)
 
 blogdb.commit()
