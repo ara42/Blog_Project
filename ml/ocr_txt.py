@@ -67,7 +67,7 @@ res_id1 = int(input("시작할 res_id : "))
 res_id2 = int(input("끝낼 res_id : "))
 
 # 데이터불러오기
-query = f"SELECT id, images FROM post_data WHERE images<>'' AND map=1 AND ad_status = 'NEED-TO-PROCESS' AND res_id >= {res_id1} AND res_id <= {res_id2}"
+query = f"SELECT id, images FROM post_data_set WHERE images<>'' AND ad_status = 'NEED-TO-PROCESS' AND res_id >= {res_id1} AND res_id <= {res_id2}"
 cursor.execute(query)
 results = cursor.fetchall()
 
@@ -106,7 +106,7 @@ for i in range(len(results)):
         im_txt = 'NULL'
 
     ocr_txt = f'{st_txt}, {im_txt}'
-    query = f"update post_data set ocr_text = %s where id = %s"
+    query = f"update post_data_set set ocr_text = %s where id = %s"
     data = (ocr_txt, post_data_id)
     cursor.execute(query, data)
     print(post_data_id)
