@@ -10,7 +10,7 @@ import joblib
 
 blogdb = pymysql.connect(host='blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com',
                       user='admin',
-                      password='', ##비밀번호 입력
+                      password='blogdb!2',
                       database='blogdb',
                       charset='utf8',
                       port=3306)
@@ -21,7 +21,7 @@ res_id1 = int(input("시작할 res_id : "))
 res_id2 = int(input("끝낼 res_id : "))
 
 # 데이터불러오기
-sel_query = f"SELECT id, ocr_text FROM post_data WHERE map=1 AND ad_status = 'NEED-TO-PROCESS' AND images <> '' AND res_id >= {res_id1} AND res_id <= {res_id2}"
+sel_query = f"SELECT id, ocr_text FROM post_data_set WHERE ad_status = 'NEED-TO-PROCESS' AND ocr_text <> '' AND res_id >= {res_id1} AND res_id <= {res_id2}"
 #query = f"SELECT id, ocr_text FROM post_data WHERE map=1 AND ad_status = 'AD' AND ocr_text <> '' AND res_id >= {res_id1} AND res_id <= {res_id2}"
 cursor.execute(sel_query)
 results = cursor.fetchall()
@@ -40,7 +40,7 @@ for i in range(len(results)):
         ad = 'AD'
     else:
         ad = 'NON-AD'
-    up_query = f"update post_data set ad_status = %s where id = %s"
+    up_query = f"update post_data_set set ad_status = %s where id = %s"
     data = (ad, post_data_id)
     cursor.execute(up_query, data)
     print(post_data_id, ad)
