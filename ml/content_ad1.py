@@ -38,7 +38,7 @@ ad_svm = joblib.load("C:/work/python/blog_API/model/svm_model6.pkl") ## 경로 �
 
 for i in range(len(results)):
     post_data_id = results[i]['id']
-    content = results[i]['content']
+    content = results[i]['content'][-100:]
     
     ## 본문 맨 뒤에서 15단어만 추출해서 한 문장으로
     main_t= re.sub(r'\s+', ' ', content)
@@ -56,7 +56,7 @@ for i in range(len(results)):
         for i in data['errInfo']:
             etext = etext.replace(i['orgStr'], i['candWord'])
     except:
-        pass
+        etext = ntext
     
     
     ## 전처리 완료한 문장 model에 넣어 광고 유무 판단
