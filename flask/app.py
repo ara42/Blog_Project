@@ -24,7 +24,7 @@ app.config['JSON_AS_ASCII'] = False
 
 ## DB 연동 (SQLAlchemy)
 user = "admin"
-password = "blogdb!2" ## 비밀번호 입력
+password = "" ## 비밀번호 입력
 host = "blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.com"
 port = 3306
 db = "blogdb"
@@ -111,8 +111,8 @@ def place():
     
     wordcloud = WordCloud(
         font_path='malgun',
-        width=800,
-        height=800,
+        width=400,
+        height=300,
         background_color='white'
     ).generate_from_frequencies(data_dict)
 
