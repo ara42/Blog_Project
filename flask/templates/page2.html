@@ -38,7 +38,7 @@
       color: white;
       border: none;
       cursor: pointer;
-      text-align: left;
+      text-align: center;
       font-size: 18px;
       margin: 10pt;
     }
@@ -55,12 +55,23 @@
       justify-content: center;
       border-radius: 100%;
       margin-right: 10px;
+      margin-left: 55px;
       font-size: 28px; /* 원하는 숫자 크기로 조정 */
+    }
+    h1 {
+      background-color: rgb(19, 89, 19);
+      display: block;
+      margin: 0;
+      height: 100px;
+      text-align: center;
+      color: white;
+      line-height: 3;
     }
   </style>
 </head>
 <body>
     <div class="logo"><a href="home"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></a></div>
+    <hr>
     <h1>"{{ name }}" 지역 찐리뷰 요약</h1>
     <hr>
     <form method="post" action="{{ url_for('restaurant') }}">
