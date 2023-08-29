@@ -67,6 +67,10 @@
       color: white;
       line-height: 3;
     }
+    .chart img {
+      margin-left: 20%;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -74,7 +78,7 @@
     <hr>
     <h1>"{{ name }}" 지역 찐리뷰 요약</h1>
     <hr>
-    <form method="post" action="{{ url_for('restaurant') }}">
+    <form method="post" action="{{ url_for('restaurant', restaurants=restaurants) }}">
     <div id="container">
       <div id="rank">
         <h2>"{{ name }}" 찐리뷰 맛집 포스팅 순위</h2>
@@ -82,7 +86,7 @@
           {% for item in restaurants %}
             <li>
               <span class="rank-number">{{ loop.index }}</span>
-              <button class="button" name="restaurant" value="{{ item[0] }}">{{ item[0] }}</button>
+              <a class="button" href="{{ url_for('restaurant', restaurant=item) }}">{{ item[0] }}</a>
             </li>
           {% endfor %}
         </ol>
@@ -91,7 +95,7 @@
       <div id="chart">
         <h2>블로그 포스팅 분석 결과</h2>
         <p><embed type="image/svg+xml" src="{{ pie_chart|safe }}" width="800" height="300"></p>
-        <p><embed type="image/svg+xml" src="{{ treemap|safe }}" width="800" height="300"></p>        
+        <p><img src="data:image/png;base64,{{ img_path }}" alt="WordCloud" width="300" height="300"></p>        
       </div>
     </div>
   
