@@ -29,10 +29,22 @@
       height: 300px; 
       object-fit: cover; 
     }
+
+        h1 {
+      background-color: rgb(19, 89, 19);
+      display: block;
+      margin: 0;
+      height: 100px;
+      text-align: center;
+      color: white;
+      line-height: 3;
+    }
+    
   </style>
 </head>
 <body>
   <div class="logo"><a href="home"><img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="20%" height="65"></a></div>
+<hr>
 <h1>"{{ restaurant }}"의 포스팅입니다.</h1>
 <hr>
 <embed type="image/svg+xml" src="{{ bar_chart|safe }}" alt="광고비율" width="49%" height="400">
