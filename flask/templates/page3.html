@@ -25,12 +25,12 @@
       height: auto;
     }
     .image-box {
-      width: 600px; 
-      height: 300px; 
+      width: 250px; 
+      height: 150px; 
       object-fit: cover; 
     }
 
-        h1 {
+    h1 {
       background-color: rgb(19, 89, 19);
       display: block;
       margin: 0;
@@ -40,8 +40,9 @@
       line-height: 3;
     }
     a {
-  text-decoration: none;
-}
+      text-decoration: none;
+    }   
+    
   </style>
 </head>
 <body>
@@ -53,7 +54,7 @@
 <embed type="image/svg+xml" src="{{ date_chart|safe }}" alt="인기음식" width="49%" height="400">
 <hr>
 <script>
-  const numPosts = 10;
+  const numPosts = 15;
   const titleList = JSON.parse('{{ l_post[0] | tojson | safe }}');
   const urlList = JSON.parse('{{ l_post[1] | tojson | safe }}');
   const descriptionList = JSON.parse('{{ l_post[2] | tojson | safe }}');
@@ -69,7 +70,7 @@
               <p>${descriptionList[i]}</p> 
             </td>
             <td>
-              <a href="포스팅링크">
+              <a href="${urlList[i]}">
               <img src="/static/${imgList[i]}" alt="img" class="image-box">
               </a>
             </td>
