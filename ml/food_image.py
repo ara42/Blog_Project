@@ -23,10 +23,11 @@ blogdb = pymysql.connect(host='blogdb.cm2yxwfja9ii.ap-northeast-2.rds.amazonaws.
 
 cursor =blogdb.cursor(pymysql.cursors.DictCursor)
 
-res_id = int(input("res_id : "))
+id1 = int(input("시작 id : "))
+id2 = int(input("끝 id : "))
 
 # 데이터불러오기
-query = f"SELECT p.url AS post_url, pds.url AS post_data_set_url, pds.images, p.id as id FROM post p JOIN post_data_set pds ON p.url = pds.url WHERE p.res_id = {res_id};"
+query = f"SELECT p.url AS post_url, pds.url AS post_data_set_url, pds.images, p.id as id FROM post p JOIN post_data_set pds ON p.url = pds.url WHERE p.id >= {id1} and p.id <= {id2};"
 cursor.execute(query)
 results = cursor.fetchall()
 
